@@ -16,7 +16,7 @@ export default function Home() {
   const [particlesReady, setParticlesReady] = useState<boolean>(false);
 
   useEffect(() => {
-    if (particlesReady && typeof window !== "undefined" && window.particlesJS) {
+    if (particlesReady && typeof window !== "undefined") {
       initParticles();
     }
   }, [particlesReady]);
