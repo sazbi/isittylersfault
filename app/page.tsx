@@ -117,13 +117,6 @@ export default function Home() {
           text-shadow: 0 2px 20px rgba(0,0,0,0.5);
         }
 
-        .subtext {
-          font-size: clamp(1.1rem, 3vw, 1.6rem);
-          color: rgba(255,255,255,0.85);
-          max-width: 560px;
-          line-height: 1.5;
-        }
-
         .btn-row {
           display: flex;
           gap: 16px;
@@ -244,6 +237,51 @@ export default function Home() {
           border-color: #ffffff;
           opacity: 1;
         }
+
+        /* --- Back button --- */
+        .btn-back {
+          background: transparent;
+          color: rgba(255,255,255,0.5);
+          border: none;
+          font-size: 1.5rem;
+          cursor: pointer;
+          padding: 8px 16px;
+          border-radius: 50px;
+          transition: color 0.15s ease, transform 0.15s ease;
+          line-height: 1;
+        }
+
+        .btn-back:hover {
+          color: #ffffff;
+          transform: translateX(-4px);
+          opacity: 1;
+        }
+        /* --- Blinking arrows --- */
+        @keyframes blink {
+          0%, 49%  { opacity: 1; }
+          50%, 100% { opacity: 0; }
+        }
+
+        .arrow-wrapper {
+          display: flex;
+          align-items: center;
+          gap: 12px;
+        }
+
+        .blink-arrow {
+          font-size: 1.4rem;
+          color: #ffffff;
+          animation: blink 2s step-start infinite;
+          display: inline-block;
+        }
+
+        .blink-arrow-delayed {
+          font-size: 1.4rem;
+          color: #ffffff;
+          animation: blink 2s step-start infinite;
+          animation-delay: 1s;
+          display: inline-block;
+        }
       `}</style>
 
       <div className="wrapper">
@@ -270,10 +308,11 @@ export default function Home() {
 
           {screen === "mouse" && (
             <>
-              <img src={"./mouse.png"} alt="A random mouse" />
+              <img src={"./mouse.png"} alt="Mouse" style={{ width: "500px", marginBottom: "24px" }} />
               <h1 className="headline">
-                Yes, can I have some cheese please?
+                Yes, Can I have some cheese pwease?
               </h1>
+              <button className="btn-back" onClick={() => setScreen("home")}>← Back</button>
             </>
           )}
 
@@ -281,23 +320,30 @@ export default function Home() {
             <>
               <h1 className="headline">No, it&apos;s probably their fault</h1>
               <div className="btn-row">
-                <a
-                  href="https://isitchadsfault.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn btn-chad"
-                >
-                  Blame Chad
-                </a>
-                <a
-                  href="https://isitjuliesfault.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn btn-julie"
-                >
-                  Blame Julie
-                </a>
+                <div className="arrow-wrapper">
+                  <span className="blink-arrow">→</span> 
+                  <a
+                    href="https://isitchadsfault.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn btn-chad"
+                  >
+                    Blame Chad
+                  </a>
+                </div>
+                <div className="arrow-wrapper">
+                  <a
+                    href="https://isitjuliesfault.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn btn-julie"
+                  >
+                    Blame Julie
+                  </a>
+                  <span className="blink-arrow-delayed">←</span>
+                </div>
               </div>
+              <button className="btn-back" onClick={() => setScreen("home")}>← Back</button>
             </>
           )}
         </div>
